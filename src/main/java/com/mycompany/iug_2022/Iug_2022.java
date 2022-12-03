@@ -6,6 +6,7 @@
 package com.mycompany.iug_2022;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
@@ -160,38 +161,136 @@ String firstLetter = name.substring(0,1);
 String remainLetters = name.substring(1);
 return firstLetter.toUpperCase() + remainLetters;
 }
-public static void convertDistance(String value,boolean iKelo){
+/*
+1- return type
+2- method name
+3- arguemnts / parameters
+4- body {}
+*/
+public static String convertDistance(double distanceValue,boolean isKelo){
+if(isKelo){
+return (distanceValue * 1000) + " M";
+}else{
+return (distanceValue / 1000) + " KM";
+}
+}
+ public static int[] sortArray(int[] unsortedArray){
+for(int i = 0 ; i < unsortedArray.length ; i ++){
+        for (int k = i+1; k < unsortedArray.length; k++) {
+            // i = 0 , k = 1
+         if(unsortedArray[i]>unsortedArray[k]){
+         int temp = unsortedArray[i];
+         unsortedArray[i] = unsortedArray[k];
+         unsortedArray[k] = temp;
+         }
+     }
+ }
+return unsortedArray;
+ }
 
-    double distanceInDouble = Double.parseDouble(value);
-
-    if(iKelo){
-        System.out.println((distanceInDouble *1000)+"m");
-    }else {
-     System.out.println((distanceInDouble /1000)+"k");
+ public static void printArrayValues(int[] array){
+     for (int i = 0; i < array.length; i++) {
+         System.out.print(array[i] + (i==array.length-1?"":","));
+     }
+    
+ }
+ // int[][] array = {{1,2,3},{4,3,2},{5,4,6}}
+ // x[0];
+ public static void printMultiDimentionalArray(int[][] array){
+     for (int i = 0; i < array.length; i++) {
+        printArrayValues(array[i]);
+         System.out.println("");
+     }
+ }
+ // {1,2,3,4,5,6} => 4
+public static int[] deleteNumber(int[] numbers,int number){
+int[] newArray = new int[numbers.length-1];
+int j = -1;
+    for (int i = 0; i < numbers.length; i++) {
+        j++;
+        if(numbers[i] ==number ){
+            j = i-1;
+         continue;
+         
+         
+        }
+       
+           
+        newArray[j] = numbers[i];
     }
+    return newArray;
 }
  public static void main(String[] args) {
-Scanner scanner = new Scanner(System.in);
+Student student = new Student("omar","gaza",10,true);
+     System.out.println(student.name);
+    /*// 1- enter the array length
+    // 2- enter the values of each element in the array
+    // 3- sort the array
+    // 4- find the min and the max number of array
+    Scanner scanner = new Scanner(System.in);
+    int[] numbers;
+    System.out.print("Enter the array length: ");
+    int length = scanner.nextInt();
+    numbers = new int[length];
+     for (int i = 0; i < length; i++) {
+         System.out.print("Enter the "+(i+1)+" number: "); 
+         numbers[i] = scanner.nextInt();
+     }
+     for (int i = 0; i < length; i++) {
+         for (int j = i+1; j < length; j++) {
+             if(numbers[i]>numbers[j]){
+             int temp = numbers[i];
+             numbers[i] = numbers[j];
+             numbers[j] = temp;
+             }
+         }
+     }
     
-    while(true){
-     System.out.print("Enter the distance in kilometer or meter: ");
-     String distance = scanner.nextLine();
-    String[] parts =  distance.split(" ");
-    
-    if(parts.length != 2){
-        System.out.println("Error, you have to enter valid syntax");
-    }else if(!(parts[1].equalsIgnoreCase("k")||parts[1].equalsIgnoreCase("m"))){
-        System.out.println("Error, you have to enter either k or m");
+     System.out.println("the max number is: "+numbers[length-1]);
+          System.out.println("the min number is: "+numbers[0]);
+  */  
+/*
+    // midterm last question 
+while(true){
+   System.out.print("Enter distance ending with k or m: ");
+    String userInput =  scanner.nextLine();
+    String[] parts =    userInput.split(" ");
    
+    if(parts.length!=2){
+        System.out.println("please enter valid syntax, example: 20 k");
     }else{
-    convertDistance(parts[0],parts[1].equalsIgnoreCase("k"));
-    break;
+        // this cpde will be excuted when parts length == 2
+     String distanceValue = parts[0];
+     String distanceType = parts[1];
+     if((distanceType.equalsIgnoreCase("k"))||
+             (distanceType.equalsIgnoreCase("m"))
+             ){
+     // this code will be excuted if distanceType = k or m
+String result = convertDistance(Double.parseDouble(distanceValue),distanceType.equalsIgnoreCase("k"));
+         System.out.println(result);
+         break;
+     }
+     else{
+         System.out.println("ditance type must be either k or m");
+     }
     }
-    }
-//    String[]names =  fullName.split(" ");
-//    for(int i = 0 ; i < names.length ; i++){
-//        System.out.println(capetlizeFirstLetter(names[i]));
-//    }
+}
+*/
+
+    
      
 
 }}
+class Student{
+String name;
+String city;
+int age;
+boolean isMale;
+Student(String name,String city,int age,boolean isMale){
+this.age=age;
+this.city=city;
+this.isMale=isMale;
+this.name=name;
+}
+
+}
